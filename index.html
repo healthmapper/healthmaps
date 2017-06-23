@@ -33,22 +33,19 @@
      
      map.addLayer(layer);
      
-      var kmlLayer = new L.KML("CCG_BSC_Apr2015.KML", {async: true});
-                                                              
-         kmlLayer.on("loaded", function(e) { 
-            map.fitBounds(e.target.getBounds());
-         });
-                                                
-         map.addLayer(kmlLayer);
-     
      var ccgLayer = omnivore.kml('CCG_BSC_Apr2015.KML')
     .on('ready', function() {
         map.fitBounds(ccgLayer.getBounds());
     })
     .addTo(map);
+    
+     var stpLayer = omnivore.csv('STP.csv')
+    .on('ready', function() {
+        map.fitBounds(stpLayer.getBounds());
+    })
+    .addTo(map);
      
-     map.addControl(new L.Control.Layers({}, {'kmlLayer':kmlLayer}));
-       map.addControl(new L.Control.Layers({}, {'BaseLayer':layer, 'CCG':ccgLayer}));  
+       map.addControl(new L.Control.Layers({}, {'BaseLayer':layer, 'CCG':ccgLayer, 'STP':stpLayer}));  
   
 
 </script>
