@@ -29,6 +29,15 @@
     var layer = new L.StamenTileLayer("watercolor");
      
      map.addLayer(layer);
+     
+      var kmlLayer = new L.KML("CCG_BSC_Apr2015.KML", {async: true});
+                                                              
+         kmlLayer.on("loaded", function(e) { 
+            map.fitBounds(e.target.getBounds());
+         });
+                                                
+         map.addLayer(kmlLayer);
+         
   
 
 </script>
