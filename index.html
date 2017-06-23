@@ -38,7 +38,9 @@
          });
                                                 
          map.addLayer(kmlLayer);
-         
+     
+     map.addControl(new L.Control.Layers({}, {'kmlLayer':kmlLayer}));
+       map.addControl(new L.Control.Layers({}, {'BaseLayer':layer}));  
   
 
 </script>
