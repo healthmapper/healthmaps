@@ -59,18 +59,12 @@
     }
 }
 
-var points = omnivore.geojson('poi.geojson')
-    .on('ready', function() {
-        map.fitBounds(points.getBounds());
-        map.addLayer(points );
-        points.eachLayer(eachLayer);
-    });
-     
+
      
    var intelLayer = omnivore.kml('intel.kml')
     .on('ready', function() {
         
-        map.addLayer(points );
+        map.addLayer(intelLayer );
         points.eachLayer(eachLayer);
         
     });
