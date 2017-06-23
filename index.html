@@ -10,7 +10,7 @@
    crossorigin=""></script>
    
    <script type="text/javascript" src="https://stamen-maps.a.ssl.fastly.net/js/tile.stamen.js"></script>
-  <script type="text/javascript" src="KML.js"></script> 
+ 
    
    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
   
@@ -39,7 +39,7 @@
     })
     .addTo(map);
     
-     var stpLayer = omnivore.csv('STP.csv')
+     var stpLayer = omnivore.kml('Sustainability_and_Transformation_Plan_Footprints_February_2017_Full_Clipped_Boundaries_in_England.kml')
     .on('ready', function() {
         map.fitBounds(stpLayer.getBounds());
     })
