@@ -44,12 +44,20 @@
         map.fitBounds(stpLayer.getBounds());
     })
     .addTo(map);
-    
+   
+     function mapPopupsFn(feature, layer){
+      if (feature.properties.name) {
+           layer.bindPopup(feature.properties.name);
+         }
+      }
+     
+     
    var intelLayer = omnivore.kml('intel.kml')
     .on('ready', function() {
         map.fitBounds(intelLayer.getBounds());
-    });
-     intelLayer.Polygon(latlngs).bindTooltip('Hi There!').addTo(map);
+        onEachFeature: mapPopupsFn;
+    }).addTo(map);
+     
      
     map.addControl(new L.Control.Layers({}, {'BaseLayer':layer, 'CCG':ccgLayer, 'STP':stpLayer, 'Intelligence':intelLayer}));  
       
