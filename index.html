@@ -45,10 +45,11 @@
     })
     .addTo(map);
    
-     function mapPopupsFn(feature, layer){
+   function mapPopupsFn(feature, layer){
       if (feature.properties.name) {
            layer.bindPopup(feature.properties.name);
          }
+        else {layer.bindPopup('Information goes here');}
       };
      
      
