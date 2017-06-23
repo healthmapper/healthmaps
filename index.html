@@ -52,12 +52,28 @@
         else {layer.bindPopup('Information goes here');}
       };
      
+    function eachLayer(layer) {
+    var feature = layer.toGeoJSON();
+    if (feature.properties && feature.properties.name) {
+        layer.bindPopup(feature.properties.name);
+    }
+}
+
+var points = omnivore.geojson('poi.geojson')
+    .on('ready', function() {
+        map.fitBounds(points.getBounds());
+        map.addLayer(points );
+        points.eachLayer(eachLayer);
+    });
+     
      
    var intelLayer = omnivore.kml('intel.kml')
     .on('ready', function() {
-        map.fitBounds(intelLayer.getBounds());
-        onEachFeature: mapPopupsFn;
-    }).addTo(map);
+        
+        map.addLayer(points );
+        points.eachLayer(eachLayer);
+        
+    });
      
      
     map.addControl(new L.Control.Layers({}, {'BaseLayer':layer, 'CCG':ccgLayer, 'STP':stpLayer, 'Intelligence':intelLayer}));  
