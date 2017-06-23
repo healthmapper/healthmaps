@@ -48,9 +48,8 @@
    var intelLayer = omnivore.kml('intel.kml')
     .on('ready', function() {
         map.fitBounds(intelLayer.getBounds());
-    })
-   .Polygon(latlngs).bindTooltip('Hi There!')
-    .addTo(map);
+    });
+     intelLayer.Polygon(latlngs).bindTooltip('Hi There!').addTo(map);
      
     map.addControl(new L.Control.Layers({}, {'BaseLayer':layer, 'CCG':ccgLayer, 'STP':stpLayer, 'Intelligence':intelLayer}));  
       
