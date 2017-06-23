@@ -11,6 +11,8 @@
    
    <script type="text/javascript" src="https://stamen-maps.a.ssl.fastly.net/js/tile.stamen.js"></script>
   <script type="text/javascript" src="KML.js"></script> 
+   
+   <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
   
  <style>
    #mapid { height: 100%; width: 100%; }
@@ -39,8 +41,14 @@
                                                 
          map.addLayer(kmlLayer);
      
+     var ccgLayer = omnivore.kml('CCG_BSC_Apr2015.KML')
+    .on('ready', function() {
+        map.fitBounds(ccgLayer.getBounds());
+    })
+    .addTo(map);
+     
      map.addControl(new L.Control.Layers({}, {'kmlLayer':kmlLayer}));
-       map.addControl(new L.Control.Layers({}, {'BaseLayer':layer}));  
+       map.addControl(new L.Control.Layers({}, {'BaseLayer':layer, 'CCG':ccgLayer}));  
   
 
 </script>
