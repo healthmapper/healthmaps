@@ -24,7 +24,14 @@
   
   <script>
 
-
+    function eachLayer(layer) {
+    var feature = layer.toGeoJSON();
+    if (feature.properties && feature.properties.name) {
+        layer.bindPopup(feature.properties.name);
+    } else {
+       layer.bindPopup('no info');
+    }
+}
     var map = new L.Map("mapid", {
         center: new L.LatLng(51, -1),
         zoom: 12
@@ -36,29 +43,17 @@
      var ccgLayer = omnivore.kml('CCG_BSC_Apr2015.KML')
     .on('ready', function() {
         map.fitBounds(ccgLayer.getBounds());
+        map.addLayer(ccgLayer );
+        ccgLayer.eachLayer(eachLayer);
     })
-    .addTo(map);
     
      var stpLayer = omnivore.kml('Sustainability_and_Transformation_Plan_Footprints_February_2017_Super_Generalised_Clipped_Boundaries_in_England.kml')
     .on('ready', function() {
         map.fitBounds(stpLayer.getBounds());
+        stpLayer.eachLayer(eachLayer);
     })
     .addTo(map);
-   
-   function mapPopupsFn(feature, layer){
-      if (feature.properties.name) {
-           layer.bindPopup(feature.properties.name);
-         }
-        else {layer.bindPopup('Information goes here');}
-      };
-     
-    function eachLayer(layer) {
-    var feature = layer.toGeoJSON();
-    if (feature.properties && feature.properties.name) {
-        layer.bindPopup(feature.properties.name);
-    }
-}
-
+ 
 
      
    var intelLayer = omnivore.kml('intel.kml')
